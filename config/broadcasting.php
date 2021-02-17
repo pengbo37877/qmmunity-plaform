@@ -1,34 +1,5 @@
 <?php
 
-$ssl_pusher_config = [
-    'driver' => 'pusher',
-    'key' => env('PUSHER_APP_KEY'),
-    'secret' => env('PUSHER_APP_SECRET'),
-    'app_id' => env('PUSHER_APP_ID'),
-    'options' => [
-        'cluster' => env('PUSHER_APP_CLUSTER'),
-        // 'encrypted' => true,
-        // 'useTLS' => true,
-        'host' => '127.0.0.1',
-        'port' => 6001,
-        'scheme' => 'https',
-    ]
-];
-
-$not_ssl_pusher_config = [
-    'driver' => 'pusher',
-    'key' => env('PUSHER_APP_KEY'),
-    'secret' => env('PUSHER_APP_SECRET'),
-    'app_id' => env('PUSHER_APP_ID'),
-    'options' => [
-        'cluster' => env('PUSHER_APP_CLUSTER'),
-        // 'encrypted' => true,
-        'host' => '127.0.0.1',
-        'port' => 6001,
-        'scheme' => 'http'
-    ]
-];
-
 return [
 
     /*
@@ -66,10 +37,14 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                // 'useTLS' => true,
-                'host' => '127.0.0.1',
-                'port' => 6001,
-                'scheme' => 'https',
+                'useTLS' => true,
+                // 'host' => '127.0.0.1',
+                // 'port' => 6001,
+                // 'scheme' => 'https',
+                // 'curl_options' => [
+                //     CURLOPT_SSL_VERIFYHOST => 0,
+                //     CURLOPT_SSL_VERIFYPEER => 0,
+                // ]
             ]
         ],
         'ably' => [
