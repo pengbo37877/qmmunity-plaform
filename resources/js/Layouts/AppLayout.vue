@@ -1,7 +1,7 @@
 <template>
     <div>
         <jet-banner />
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
@@ -251,6 +251,13 @@
             return {
                 showingNavigationDropdown: false,
             }
+        },
+
+        created() {
+            Echo.channel('hello')
+                .listen('HelloEvent', (e) => {
+                    console.log(e.name)
+                })
         },
 
         methods: {
