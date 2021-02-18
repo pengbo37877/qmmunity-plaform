@@ -18034,6 +18034,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    console.log('start listen websockets.');
     Echo.channel('hello').listen('HelloEvent', function (e) {
       console.log(e.name);
     });
@@ -23884,10 +23885,11 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   key: "ddeeff",
   cluster: "mt1",
   forceTLS: true,
-  wsHost: window.location.hostname,
-  wsPort: 6001,
-  wssPort: 6001,
-  disableStats: true
+  wsHost: "socket.qmmunity.test",
+  wsPort: 80,
+  wssPort: 443,
+  disableStats: true,
+  enabledTransports: ['ws', 'wss']
 });
 
 /***/ }),
