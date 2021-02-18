@@ -29,5 +29,6 @@ window.Echo = new Echo({
     wsPort: 80,
     wssPort: 443,
     disableStats: true,
+    scheme: process.env.MIX_PUSHER_SCHEME,
     enabledTransports: ['ws', 'wss']
 });

@@ -23889,6 +23889,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   wsPort: 80,
   wssPort: 443,
   disableStats: true,
+  scheme: "http",
   enabledTransports: ['ws', 'wss']
 });
 
