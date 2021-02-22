@@ -24,11 +24,15 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: true,
-    wsHost: process.env.MIX_PUSHER_HOST,
-    wsPort: 80,
-    wssPort: 443,
+    // forceTLS: true,
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    forceTLS: false,
     disableStats: true,
-    scheme: process.env.MIX_PUSHER_SCHEME,
-    enabledTransports: ['ws', 'wss']
 });
+
+window.Echo.channel('hello')
+    .listen('HelloEvent', (e) => {
+        console.log(e)
+    })
+

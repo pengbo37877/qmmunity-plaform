@@ -253,13 +253,8 @@
             }
         },
 
-        // created() {
-        //     console.log('start listen websockets.');
-        //     Echo.channel('hello')
-        //         .listen('HelloEvent', (e) => {
-        //             console.log(e.name)
-        //         })
-        // },
+        created() {
+        },
 
         methods: {
             switchToTeam(team) {

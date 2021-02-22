@@ -18035,7 +18035,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     console.log('start listen websockets.');
-    Echo.channel('hello').listen('HelloEvent', function (e) {
+    window.Echo.channel('hello').listen('HelloEvent', function (e) {
       console.log(e.name);
     });
   },
@@ -23882,15 +23882,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'pusher',
-  key: "ddeeff",
-  cluster: "mt1",
-  forceTLS: true,
-  wsHost: "socket.qmmunity.test",
-  wsPort: 80,
-  wssPort: 443,
-  disableStats: true,
-  scheme: "http",
-  enabledTransports: ['ws', 'wss']
+  key: "local",
+  cluster: "ap3",
+  // forceTLS: true,
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  forceTLS: false,
+  disableStats: true
+});
+window.Echo.channel('hello').listen('HelloEvent', function (e) {
+  console.log(e);
 });
 
 /***/ }),
