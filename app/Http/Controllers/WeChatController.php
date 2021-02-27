@@ -52,6 +52,7 @@ class WeChatController extends Controller
 
         // 创建UserProfile
         $profile = new UserProfile;
+        $profile->user_id = $user->id;
         $profile->open_id = $arr['openid'];
         $profile->session_key = $arr['session_key'];
         $profile->union_id = empty($arr['unionid']) ?? $arr['unionid'];
