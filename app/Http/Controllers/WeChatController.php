@@ -33,6 +33,7 @@ class WeChatController extends Controller
         $app = app('wechat.mini_program');
         $arr = $app->auth->session($code);
 
+        return $arr;
         if ($arr['errcode'] != 0) {
             Log::error($arr['errmsg']);
             abort(500, $arr['errmsg']);
