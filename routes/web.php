@@ -27,3 +27,9 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+// 微信路由
+Route::any('/wechat', 'WeChatController@serve'); // 处理小程序客服消息，回复客服消息
+
+// 使用code换取access_token
+Route::any('/access_token', 'WeChatController@accessToken');

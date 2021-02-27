@@ -12,7 +12,7 @@ class UserProfile extends Model
     protected $fillable = [
         'user_id', 'name', 'location', 'bio', 'sexual_pref',
         'gender_id', 'gender_exp', 'romantically_attracted_to',
-        'interests', 'open_id', 'union_id', 'gender', 'avatar',
-        'phone'
+        'interests', 'open_id', 'union_id', 'session_key', 'gender',
+        'avatar', 'phone'
     ];
 }

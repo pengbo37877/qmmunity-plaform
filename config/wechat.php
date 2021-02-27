@@ -2,11 +2,11 @@
 
 /*
  * This file is part of the overtrue/laravel-wechat.
- *
- * (c) overtrue <i@overtrue.me>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+         *
+         * (c) overtrue <i@overtrue.me>
+         *
+         * This source file is subject to the MIT license that is bundled
+         * with this source code in the file LICENSE.
  */
 
 return [
@@ -107,14 +107,14 @@ return [
     /*
      * 小程序
      */
-    // 'mini_program' => [
-    //     'default' => [
-    //         'app_id'  => env('WECHAT_MINI_PROGRAM_APPID', ''),
-    //         'secret'  => env('WECHAT_MINI_PROGRAM_SECRET', ''),
-    //         'token'   => env('WECHAT_MINI_PROGRAM_TOKEN', ''),
-    //         'aes_key' => env('WECHAT_MINI_PROGRAM_AES_KEY', ''),
-    //     ],
-    // ],
+    'mini_program' => [
+        'default' => [
+            'app_id'  => env('WECHAT_MINI_PROGRAM_APPID', 'wx6eed835023e41f41'),
+            'secret'  => env('WECHAT_MINI_PROGRAM_SECRET', 'aba65d630378473ede6ea7be6f8f25d0'),
+            'token'   => env('WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('WECHAT_MINI_PROGRAM_AES_KEY', ''),
+        ],
+    ],
 
     /*
      * 微信支付
