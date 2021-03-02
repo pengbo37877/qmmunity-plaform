@@ -53,11 +53,9 @@ class ReviewController extends AdminController
         $show->field('id', __('Id'));
         $show->field('user_id', __('User Id'));
         $show->field('message', __('Message'));
-        $show->images()->unescape()->as(function ($images) {
-            return array_map(function ($img) {
-                return "<img src='/uploads/{$img}' />";
-            }, $images);
-        });
+        $show->images()->map(function ($path) {
+            return env('APP_URL') . '/uploads/' . $path;
+        })->image();
         $show->field('reviewable_id', __('Reviewable id'));
         $show->field('reviewable_type', __('Reviewable type'));
         $show->field('created_at', __('Created at'));
