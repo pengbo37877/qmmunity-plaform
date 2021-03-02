@@ -34,6 +34,7 @@ class BusinessController extends AdminController
         $grid->column('address', __('Address'));
         $grid->column('working_time_from', __('Working time from'));
         $grid->column('working_time_to', __('Working time to'));
+        $grid->column('price_title', __('Price title'));
         $grid->column('price_from', __('Price from'));
         $grid->column('price_to', __('Price to'));
         $grid->column('price_currency', __('Price currency'));
@@ -64,6 +65,7 @@ class BusinessController extends AdminController
         $show->field('address', __('Address'));
         $show->field('working_time_from', __('Working time from'));
         $show->field('working_time_to', __('Working time to'));
+        $show->field('price_title', __('Price title'));
         $show->field('price_from', __('Price from'));
         $show->field('price_to', __('Price to'));
         $show->field('price_currency', __('Price currency'));
@@ -88,6 +90,7 @@ class BusinessController extends AdminController
         $form->text('address', __('Address'));
         $form->text('working_time_from', __('Working time from'));
         $form->text('working_time_to', __('Working time to'));
+        $form->text('price_title', __('Price title'));
         $form->text('price_from', __('Price from'));
         $form->text('price_to', __('Price to'));
         $form->text('price_currency', __('Price currency'))->default('RMB');

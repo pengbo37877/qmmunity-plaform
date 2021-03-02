@@ -11,7 +11,7 @@ class Business extends Model
 
     protected $fillable = [
         'name', 'images', 'address', 'working_time_from', 'working_time_to',
-        'price_from', 'price_to', 'price_currency', 'about'
+        'price_title', 'price_from', 'price_to', 'price_currency', 'about'
     ];
 
     public function setImagesAttribute($pictures)
