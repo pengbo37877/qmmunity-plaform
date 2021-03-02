@@ -28,9 +28,7 @@ class BusinessController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
-        $grid->column('images', __('Images'))->display(function ($images) {
-            return $images;
-        })->image(env('APP_URL') . '/uploads', 100, 100);;
+        $grid->images();
         $grid->column('address', __('Address'));
         $grid->column('working_time_from', __('Working time from'));
         $grid->column('working_time_to', __('Working time to'));
@@ -58,10 +56,9 @@ class BusinessController extends AdminController
         $show->field('name', __('Name'));
         // $show->field('images', __('Images'));
         $show->images()->unescape()->as(function ($images) {
-            $imgs = json_decode($images, true);
             return array_map(function ($img) {
                 return "<img src='/uploads/{$img}' />";
-            }, $imgs);
+            }, $images);
         });
 
         $show->field('address', __('Address'));
