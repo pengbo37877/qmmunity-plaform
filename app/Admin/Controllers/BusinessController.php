@@ -57,11 +57,9 @@ class BusinessController extends AdminController
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
         // $show->field('images', __('Images'));
-        $show->images()->unescape()->as(function ($images) {
-            return array_map(function ($img) {
-                return "<img src='/uploads/{$img}' />";
-            }, $images);
-        });
+        $show->images()->map(function ($path) {
+            return env('APP_URL') . '/uploads/' . $path;
+        })->image();
 
         $show->field('address', __('Address'));
         $show->field('working_time_from', __('Working time from'));
