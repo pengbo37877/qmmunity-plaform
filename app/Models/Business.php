@@ -14,6 +14,18 @@ class Business extends Model
         'price_from', 'price_to', 'price_currency', 'about'
     ];
 
+    public function setImagesAttribute($pictures)
+    {
+        if (is_array($pictures)) {
+            $this->attributes['images'] = json_encode($pictures);
+        }
+    }
+
+    public function getImagesAttribute($pictures)
+    {
+        return json_decode($pictures, true);
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'business_category', 'business_id', 'category_id');
