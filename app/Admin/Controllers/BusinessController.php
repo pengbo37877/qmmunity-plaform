@@ -73,6 +73,14 @@ class BusinessController extends AdminController
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
+        $show->categories('Categories', function ($categories) {
+            $categories->id();
+            $categories->name();
+            $categories->icon()->unescape()->as(function ($icon) {
+                return "<img src='/uploads/{$icon}'/>";
+            });
+        });
+
         return $show;
     }
 
