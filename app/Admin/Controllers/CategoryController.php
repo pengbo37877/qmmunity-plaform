@@ -67,7 +67,7 @@ class CategoryController extends AdminController
 
         $form->number('parent_id', __('Parent id'));
         $form->text('name', __('Name'));
-        $form->text('icon', __('Icon'));
+        $form->image('icon', __('Icon'));
 
         return $form;
     }

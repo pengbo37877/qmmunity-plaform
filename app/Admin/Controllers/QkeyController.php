@@ -64,7 +64,7 @@ class QkeyController extends AdminController
         $form = new Form(new Qkey());
 
         $form->text('name', __('Name'));
-        $form->text('icon', __('Icon'));
+        $form->image('icon', __('Icon'));
 
         return $form;
     }
