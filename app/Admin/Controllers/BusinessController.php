@@ -28,7 +28,9 @@ class BusinessController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
-        $grid->images();
+        $grid->images()->map(function ($path) {
+            return env('APP_URL') . '/uploads/' . $path;
+        })->image();;
         $grid->column('address', __('Address'));
         $grid->column('working_time_from', __('Working time from'));
         $grid->column('working_time_to', __('Working time to'));
