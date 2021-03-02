@@ -27,7 +27,6 @@ class CategoryController extends AdminController
         $grid = new Grid(new Category());
 
         $grid->column('id', __('Id'));
-        $grid->column('parent_id', __('Parent id'));
         $grid->column('name', __('Name'));
         $grid->column('icon', __('Icon'))->image(env('APP_URL') . '/uploads', 64, 64);
         $grid->column('created_at', __('Created at'));
@@ -47,7 +46,6 @@ class CategoryController extends AdminController
         $show = new Show(Category::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('parent_id', __('Parent id'));
         $show->field('name', __('Name'));
         // $show->field('icon', __('Icon'));
         $show->icon()->unescape()->as(function ($icon) {
@@ -68,7 +66,6 @@ class CategoryController extends AdminController
     {
         $form = new Form(new Category());
 
-        $form->number('parent_id', __('Parent id'));
         $form->text('name', __('Name'));
         $form->image('icon', __('Icon'))->thumbnail('small', $width = 300, $height = 300)->uniqueName();
 
