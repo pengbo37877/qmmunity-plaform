@@ -28,7 +28,9 @@ class BusinessController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
-        $grid->column('images', __('Images'));
+        $grid->column('images', __('Images'))->display(function ($images) {
+            return json_decode($images, true);
+        })->image(env('APP_URL') . '/uploads', 100, 100);;
         $grid->column('address', __('Address'));
         $grid->column('working_time_from', __('Working time from'));
         $grid->column('working_time_to', __('Working time to'));
@@ -54,7 +56,14 @@ class BusinessController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
-        $show->field('images', __('Images'));
+        // $show->field('images', __('Images'));
+        $show->images()->unescape()->as(function ($images) {
+            $imgs = json_decode($images, true);
+            return array_map(function ($img) {
+                return "<img src='/uploads/{$img}' />";
+            }, $imgs);
+        });
+
         $show->field('address', __('Address'));
         $show->field('working_time_from', __('Working time from'));
         $show->field('working_time_to', __('Working time to'));
@@ -78,7 +87,7 @@ class BusinessController extends AdminController
         $form = new Form(new Business());
 
         $form->text('name', __('Name'));
-        $form->multipleImage('images', __('Images'))->removable();
+        $form->multipleImage('images', __('Images'))->removable()->uniqueName();
         $form->text('address', __('Address'));
         $form->text('working_time_from', __('Working time from'));
         $form->text('working_time_to', __('Working time to'));
