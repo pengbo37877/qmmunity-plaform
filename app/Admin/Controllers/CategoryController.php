@@ -70,7 +70,7 @@ class CategoryController extends AdminController
 
         $form->text('name', __('Name'));
         $form->image('icon', __('Icon'))->thumbnail('small', $width = 300, $height = 300)->uniqueName();
-        $form->radio('show in home', __('Show in home'))->options([1 => 'Show', 0 => 'Hide'])->default(0);
+        $form->radio('show_in_home', __('Show in home'))->options([1 => 'Show', 0 => 'Hide'])->default(0);
         return $form;
     }
 }
