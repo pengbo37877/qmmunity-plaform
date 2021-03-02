@@ -9,7 +9,12 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'icon'];
+    protected $fillable = ['name', 'icon', 'show_in_home'];
+
+    public function scopeHome($query)
+    {
+        return $query->where('show_in_home', 1);
+    }
 
     public function parent()
     {
