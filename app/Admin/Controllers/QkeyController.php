@@ -28,7 +28,7 @@ class QkeyController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
-        $grid->column('icon', __('Icon'));
+        $grid->column('icon', __('Icon'))->image();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -49,7 +49,7 @@ class QkeyController extends AdminController
         $show->field('name', __('Name'));
         // $show->field('icon', __('Icon'));
         $show->icon()->unescape()->as(function ($icon) {
-            return "<img src='uploads/{$icon}' />";
+            return "<img src='/uploads/{$icon}' />";
         });
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
