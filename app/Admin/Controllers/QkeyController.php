@@ -47,7 +47,10 @@ class QkeyController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
-        $show->field('icon', __('Icon'));
+        // $show->field('icon', __('Icon'));
+        $show->icon()->unescape()->as(function ($icon) {
+            return "<img src='uploads/{$icon}' />";
+        });
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
