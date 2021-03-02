@@ -74,6 +74,7 @@ class BusinessController extends AdminController
         $show->field('updated_at', __('Updated at'));
 
         $show->categories('Categories', function ($categories) {
+            $categories->resource('/admin/categories');
             $categories->id();
             $categories->name();
             $categories->icon()->unescape()->as(function ($icon) {
