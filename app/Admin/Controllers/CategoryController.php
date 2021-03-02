@@ -29,14 +29,9 @@ class CategoryController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
         $grid->column('icon', __('Icon'))->image(env('APP_URL') . '/uploads', 64, 64);
-        $grid->selector(function (Grid\Tools\Selector $selector) {
-            $selector->select('show_in_home', 'Show home', [
-                1 => 'Show',
-                0 => 'Hide'
-            ]);
-        });
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('show_in_home', __('Show in home'))->bool();
+        // $grid->column('created_at', __('Created at'));
+        // $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
@@ -75,7 +70,7 @@ class CategoryController extends AdminController
 
         $form->text('name', __('Name'));
         $form->image('icon', __('Icon'))->thumbnail('small', $width = 300, $height = 300)->uniqueName();
-        $form->radio('show in home', __('Show in home'))->options([1 => 'Show', 0 => 'Hime'])->default(0);
+        $form->radio('show in home', __('Show in home'))->options([1 => 'Show', 0 => 'Hide'])->default(0);
         return $form;
     }
 }
