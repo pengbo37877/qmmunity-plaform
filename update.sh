@@ -1,4 +1,4 @@
-git reset --hard
+git reset --hard HEAD
 git pull
 composer install
 npm install
