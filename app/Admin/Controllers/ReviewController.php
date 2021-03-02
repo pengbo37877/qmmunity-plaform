@@ -28,7 +28,9 @@ class ReviewController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('message', __('Message'));
-        $grid->column('images', __('Images'));
+        $grid->images()->map(function ($path) {
+            return env('APP_URL') . '/uploads/' . $path;
+        })->image();
         $grid->column('reviewable_id', __('Reviewable id'));
         $grid->column('reviewable_type', __('Reviewable type'));
         $grid->column('created_at', __('Created at'));
@@ -49,7 +51,11 @@ class ReviewController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('message', __('Message'));
-        $show->field('images', __('Images'));
+        $show->images()->unescape()->as(function ($images) {
+            return array_map(function ($img) {
+                return "<img src='/uploads/{$img}' />";
+            }, $images);
+        });
         $show->field('reviewable_id', __('Reviewable id'));
         $show->field('reviewable_type', __('Reviewable type'));
         $show->field('created_at', __('Created at'));
@@ -68,7 +74,7 @@ class ReviewController extends AdminController
         $form = new Form(new Review());
 
         $form->textarea('message', __('Message'));
-        $form->textarea('images', __('Images'));
+        $form->multipleImage('images', __('Images'))->removable()->uniqueName();
         $form->number('reviewable_id', __('Reviewable id'));
         $form->text('reviewable_type', __('Reviewable type'));
 
