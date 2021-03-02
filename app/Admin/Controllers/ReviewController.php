@@ -27,6 +27,7 @@ class ReviewController extends AdminController
         $grid = new Grid(new Review());
 
         $grid->column('id', __('Id'));
+        $grid->column('user_id', __('User Id'));
         $grid->column('message', __('Message'));
         $grid->images()->map(function ($path) {
             return env('APP_URL') . '/uploads/' . $path;
@@ -50,6 +51,7 @@ class ReviewController extends AdminController
         $show = new Show(Review::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('user_id', __('User Id'));
         $show->field('message', __('Message'));
         $show->images()->unescape()->as(function ($images) {
             return array_map(function ($img) {
@@ -73,6 +75,7 @@ class ReviewController extends AdminController
     {
         $form = new Form(new Review());
 
+        $form->number('user_id', __('User Id'));
         $form->textarea('message', __('Message'));
         $form->multipleImage('images', __('Images'))->removable()->uniqueName();
         $form->number('reviewable_id', __('Reviewable id'));
