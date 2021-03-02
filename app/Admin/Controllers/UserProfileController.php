@@ -41,8 +41,8 @@ class UserProfileController extends AdminController
         $grid->column('gender_exp', __('Gender exp'));
         $grid->column('romantically_attracted_to', __('Romantically attracted to'));
         $grid->column('interests', __('Interests'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        // $grid->column('created_at', __('Created at'));
+        // $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }

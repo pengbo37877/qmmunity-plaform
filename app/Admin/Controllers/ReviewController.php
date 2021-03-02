@@ -34,8 +34,8 @@ class ReviewController extends AdminController
         })->image();
         $grid->column('reviewable_id', __('Reviewable id'));
         $grid->column('reviewable_type', __('Reviewable type'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        // $grid->column('created_at', __('Created at'));
+        // $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
