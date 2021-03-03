@@ -32,6 +32,7 @@ class ReviewController extends AdminController
         $grid->images()->map(function ($path) {
             return env('APP_URL') . '/uploads/' . $path;
         })->image();
+        $grid->column('show', __('Show'))->bool();
         $grid->column('reviewable_id', __('Reviewable id'));
         $grid->column('reviewable_type', __('Reviewable type'));
         // $grid->column('created_at', __('Created at'));
@@ -56,6 +57,7 @@ class ReviewController extends AdminController
         $show->images()->map(function ($path) {
             return env('APP_URL') . '/uploads/' . $path;
         })->image();
+        $show->show()->using([1 => 'Show', 0 => 'Hide']);
         $show->field('reviewable_id', __('Reviewable id'));
         $show->field('reviewable_type', __('Reviewable type'));
         $show->field('created_at', __('Created at'));
@@ -76,6 +78,7 @@ class ReviewController extends AdminController
         $form->number('user_id', __('User Id'));
         $form->textarea('message', __('Message'));
         $form->multipleImage('images', __('Images'))->removable()->uniqueName();
+        $form->radio('show', __('Show'))->options([1 => 'Show', 0 => 'Hide'])->default(1);
         $form->number('reviewable_id', __('Reviewable id'));
         $form->text('reviewable_type', __('Reviewable type'));
 

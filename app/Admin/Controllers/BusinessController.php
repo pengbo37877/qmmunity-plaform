@@ -3,6 +3,11 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Business;
+use App\Models\Qkey;
+use App\Admin\Selectable\Categories;
+use App\Admin\Selectable\Qkeys;
+use App\Admin\Selectable\Rates;
+use App\Models\Rate;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -28,9 +33,7 @@ class BusinessController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
-        $grid->images()->map(function ($path) {
-            return env('APP_URL') . '/uploads/' . $path;
-        })->image();
+        $grid->images()->image(env('APP_URL') . '/uploads', 64, 64);
         $grid->column('address', __('Address'));
         $grid->column('working_time_from', __('Working time from'));
         $grid->column('working_time_to', __('Working time to'));
@@ -77,7 +80,27 @@ class BusinessController extends AdminController
             $categories->resource('/admin/categories');
             $categories->id();
             $categories->name();
-            $categories->icon()->image();
+            $categories->icon()->image(env('APP_URL') . '/uploads', 64, 64);
+        });
+
+        $show->qkeys('Q keys', function ($qkeys) {
+            $qkeys->resource('/admin/qkeys');
+            $qkeys->id();
+            $qkeys->name();
+            $qkeys->icon()->image(env('APP_URL') . '/uploads', 64, 64);
+        });
+
+        $show->reviews('Reviews', function ($reviews) {
+            $reviews->resource('/admin/reviews');
+            $reviews->id();
+            $reviews->message();
+            $reviews->images()->image(env('APP_URL') . '/uploads', 64, 64);
+        });
+
+        $show->rates('Rate', function ($rates) {
+            $rates->resource('/admin/rates');
+            $rates->user_id();
+            $rates->rating();
         });
 
         return $show;
@@ -102,6 +125,18 @@ class BusinessController extends AdminController
         $form->text('price_to', __('Price to'));
         $form->text('price_currency', __('Price currency'))->default('RMB');
         $form->textarea('about', __('About'));
+
+        $form->belongsToMany('categories', Categories::class, __('Categories'));
+        // $form->multipleSelect('categories', 'Category')->options(Category::all()->pluck('name', 'id'));
+        $form->belongsToMany('qkeys', Qkeys::class, __('Q keys'));
+        // $form->multipleSelect('qkeys', 'Q keys')->options(Qkey::all()->pluck('name', 'id'));
+
+        $form->morphMany('reviews', function (Form\NestedForm $form) {
+            $form->text('message');
+            $form->multipleImage('images', __('Images'));
+            $form->radio('show', __('Show'))->options([1 => 'Show', 0 => 'Hide'])->default(0);
+        });
+
 
         return $form;
     }

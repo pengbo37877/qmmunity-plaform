@@ -56,6 +56,13 @@ class CategoryController extends AdminController
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
+        $show->children('Category children', function ($categories) {
+            $categories->resource('/admin/categories');
+            $categories->id();
+            $categories->name();
+            $categories->icon()->image();
+        });
+
         return $show;
     }
 

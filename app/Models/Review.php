@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'message', 'images', 'reviewable_id', 'reviewable_type'];
+    protected $fillable = ['user_id', 'message', 'images', 'show', 'reviewable_id', 'reviewable_type'];
 
     public function setImagesAttribute($pictures)
     {
@@ -21,6 +21,11 @@ class Review extends Model
     public function getImagesAttribute($pictures)
     {
         return json_decode($pictures, true);
+    }
+
+    public function scopeShow($query)
+    {
+        return $query->where('show', 1);
     }
 
     public function user()
