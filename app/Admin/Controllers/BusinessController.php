@@ -77,9 +77,7 @@ class BusinessController extends AdminController
             $categories->resource('/admin/categories');
             $categories->id();
             $categories->name();
-            $categories->icon()->unescape()->as(function ($icon) {
-                return "<img src='/uploads/{$icon}'/>";
-            });
+            $categories->icon()->image();
         });
 
         return $show;
