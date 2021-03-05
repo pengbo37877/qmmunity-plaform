@@ -106,7 +106,7 @@ class BusinessController extends AdminController
         $show->ads('Ads', function ($reviews) {
             $reviews->resource('/admin/ads');
             $reviews->id();
-            $reviews->image(env('APP_URL') . '/uploads', 100, 64);
+            $reviews->image()->image(env('APP_URL') . '/uploads', 100, 64);
         });
 
         return $show;
