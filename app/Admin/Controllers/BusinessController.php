@@ -41,7 +41,7 @@ class BusinessController extends AdminController
         $grid->column('price_from', __('Price from'));
         $grid->column('price_to', __('Price to'));
         $grid->column('price_currency', __('Price currency'));
-        $grid->column('about', __('About'));
+        // $grid->column('about', __('About'));
         $grid->column('recommend', __('Recommend'))->bool();
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));

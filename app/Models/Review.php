@@ -9,7 +9,10 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'message', 'images', 'show', 'reviewable_id', 'reviewable_type'];
+    protected $fillable = [
+        'user_id', 'message', 'images', 'show', 'reviewable_id', 'reviewable_type',
+        'likes_count'
+    ];
 
     public function setImagesAttribute($pictures)
     {
@@ -40,6 +43,11 @@ class Review extends Model
 
     public function reviews()
     {
-        $this->morphMany(Review::class, 'reviewable');
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    public function likedUsers()
+    {
+        return $this->belongsToMany(User::class, 'user_like_review', 'review_id', 'user_id');
     }
 }
