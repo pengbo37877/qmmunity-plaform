@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home_categories', [HomeController::class, 'categories']);
 Route::get('/home_businesses', [HomeController::class, 'businesses']);
-Route::get('/home_ads', [AdController::class, 'home']);
+Route::get('/home_ads', [HomeController::class, 'ads']);
+Route::get('/home_notice', [HomeController::class, 'notice']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
