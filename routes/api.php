@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdController;
 use App\Http\Controllers\Api\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home_categories', [HomeController::class, 'categories']);
 Route::get('/home_businesses', [HomeController::class, 'businesses']);
+Route::get('/home_ads', [AdController::class, 'home']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

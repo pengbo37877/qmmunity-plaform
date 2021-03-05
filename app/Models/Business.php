@@ -11,7 +11,8 @@ class Business extends Model
 
     protected $fillable = [
         'name', 'images', 'address', 'working_time_from', 'working_time_to',
-        'price_title', 'price_from', 'price_to', 'price_currency', 'about'
+        'price_title', 'price_from', 'price_to', 'price_currency', 'about',
+        'recommend'
     ];
 
     public function setImagesAttribute($pictures)
@@ -24,6 +25,11 @@ class Business extends Model
     public function getImagesAttribute($pictures)
     {
         return json_decode($pictures, true);
+    }
+
+    public function scopeRecommend($query)
+    {
+        return $query->where('recommend', 1);
     }
 
     public function categories()
