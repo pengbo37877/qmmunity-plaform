@@ -51,4 +51,9 @@ class Business extends Model
     {
         return $this->morphMany(Review::class, 'reviewable');
     }
+
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
 }

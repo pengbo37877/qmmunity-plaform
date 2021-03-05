@@ -137,6 +137,10 @@ class BusinessController extends AdminController
             $form->radio('show', __('Show'))->options([1 => 'Show', 0 => 'Hide'])->default(0);
         });
 
+        $form->hasMany('ads', function (Form\NestedForm $form) {
+            $form->image('image');
+        });
+
 
         return $form;
     }

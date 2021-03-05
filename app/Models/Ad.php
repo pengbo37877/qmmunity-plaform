@@ -15,4 +15,9 @@ class Ad extends Model
     {
         return $query->where('show', true);
     }
+
+    public function business()
+    {
+        return $this->belongsTo(Business::class);
+    }
 }

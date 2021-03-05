@@ -20,4 +20,5 @@ Route::group([
     $router->resource('rates', RateController::class);
     $router->resource('reviews', ReviewController::class);
     $router->resource('user-profiles', UserProfileController::class);
+    $router->resource('ads', AdController::class);
 });
