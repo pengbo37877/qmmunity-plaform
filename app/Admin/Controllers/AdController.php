@@ -27,7 +27,7 @@ class AdController extends AdminController
         $grid = new Grid(new Ad());
 
         $grid->column('id', __('Id'));
-        $grid->column('image', __('Image'))->image(env('APP_URL') . '/uploads/', 100, 64);;
+        $grid->column('image', __('Image'))->image(env('APP_URL') . '/uploads', 100, 64);;
         $grid->column('business_id', __('Business id'));
         $grid->column('business.name', __('Business name'));
         $grid->column('show', __('Ad Show'))->bool();
@@ -48,7 +48,7 @@ class AdController extends AdminController
         $show = new Show(Ad::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('image', __('Image'));
+        $show->field('image', __('Image'))->image();
         $show->field('business_id', __('Business id'));
         $show->field('show', __('Show'));
         $show->field('created_at', __('Created at'));
