@@ -35,7 +35,7 @@ class HomeController extends Controller
 
     public function notice()
     {
-        $notice = Notice::show()->take(1)->get();
+        $notice = Notice::show()->take(1)->first();
         return new NoticeResource($notice);
     }
 }
