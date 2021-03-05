@@ -16,8 +16,8 @@ class AdResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            $this->image,
-            $this->business_id
+            'image' => $this->image,
+            'business_id' => $this->business_id
         ];
     }
 }
