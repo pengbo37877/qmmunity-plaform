@@ -42,6 +42,7 @@ class BusinessController extends AdminController
         $grid->column('price_to', __('Price to'));
         $grid->column('price_currency', __('Price currency'));
         $grid->column('about', __('About'));
+        $grid->column('recommend', __('Recommend'))->bool();
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
@@ -73,6 +74,7 @@ class BusinessController extends AdminController
         $show->field('price_to', __('Price to'));
         $show->field('price_currency', __('Price currency'));
         $show->field('about', __('About'));
+        $show->field('recommend', __('Recommend'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -131,6 +133,7 @@ class BusinessController extends AdminController
         $form->text('price_to', __('Price to'));
         $form->text('price_currency', __('Price currency'))->default('RMB');
         $form->textarea('about', __('About'));
+        $form->radio('recommend', __('Recommend'))->options([1 => 'Recommend', 0 => 'Standard'])->default(0);
 
         $form->belongsToMany('categories', Categories::class, __('Categories'));
         // $form->multipleSelect('categories', 'Category')->options(Category::all()->pluck('name', 'id'));
@@ -145,6 +148,7 @@ class BusinessController extends AdminController
 
         $form->hasMany('ads', function (Form\NestedForm $form) {
             $form->image('image');
+            $form->radio('show', __('Show'))->options([1 => 'Show', 0 => 'Hide'])->default(0);
         });
 
 
