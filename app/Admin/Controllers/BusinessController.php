@@ -7,6 +7,7 @@ use App\Models\Qkey;
 use App\Admin\Selectable\Categories;
 use App\Admin\Selectable\Qkeys;
 use App\Admin\Selectable\Rates;
+use App\Models\Province;
 use App\Models\Rate;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -131,6 +132,16 @@ class BusinessController extends AdminController
 
         $form->text('name', __('Name'));
         $form->multipleImage('images', __('Images'))->removable()->uniqueName();
+        $provinces = Province::all()->pluck(['provincid', 'province'])->toArray();
+        $options = array_map(function ($item) {
+            return [
+                'id' => $item['provinceid'],
+                'text' => $item['province']
+            ];
+        }, $provinces);
+        $form->select('province')->options($options)->load('city', '/api/city');
+        $form->select('city')->load('area', '/api/area');
+        $form->select('area');
         $form->text('province', __('Province'));
         $form->text('city', __('City'));
         $form->text('area', __('Area'));
