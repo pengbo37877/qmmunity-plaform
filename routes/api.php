@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdController;
+use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::get('/home_businesses', [HomeController::class, 'businesses']);
 Route::get('/home_ads', [HomeController::class, 'ads']);
 Route::get('/home_notice', [HomeController::class, 'notice']);
 Route::get('/home_search', [HomeController::class, 'search']);
+Route::get('/city', [AddressController::class, 'city']);
+Route::get('/area', [AddressController::class, 'area']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

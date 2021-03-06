@@ -14,9 +14,9 @@ class AddProvinceCityToBusinessesTable extends Migration
     public function up()
     {
         Schema::table('businesses', function (Blueprint $table) {
-            $table->string('province')->after('images')->nullable();
-            $table->string('city')->after('images')->nullable();
-            $table->string('area')->after('images')->nullable();
+            $table->string('provinceid')->after('images')->nullable();
+            $table->string('cityid')->after('images')->nullable();
+            $table->string('areaid')->after('images')->nullable();
         });
     }
 
@@ -28,9 +28,9 @@ class AddProvinceCityToBusinessesTable extends Migration
     public function down()
     {
         Schema::table('businesses', function (Blueprint $table) {
-            $table->dropColumn('province');
-            $table->dropColumn('city');
-            $table->dropColumn('area');
+            $table->dropColumn('provinceid');
+            $table->dropColumn('cityid');
+            $table->dropColumn('areaid');
         });
     }
 }

@@ -10,9 +10,9 @@ class Business extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'images', 'province', 'city', 'address', 'working_time_from',
-        'working_time_to', 'price_title', 'price_from', 'price_to',
-        'price_currency', 'about', 'recommend'
+        'name', 'images', 'provinceid', 'cityid', 'areaid', 'address',
+        'working_time_from', 'working_time_to', 'price_title', 'price_from',
+        'price_to', 'price_currency', 'about', 'recommend'
     ];
 
     public function setImagesAttribute($pictures)
@@ -55,5 +55,20 @@ class Business extends Model
     public function ads()
     {
         return $this->hasMany(Ad::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'provinceid', 'provinceid');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'cityid', 'cityid');
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'areaid', 'areaid');
     }
 }
