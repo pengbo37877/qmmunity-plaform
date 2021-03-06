@@ -38,4 +38,13 @@ class HomeController extends Controller
         $notice = Notice::show()->take(1)->first();
         return new NoticeResource($notice);
     }
+
+    public function search()
+    {
+        $q = request('q');
+        $city = request('city');
+        // 搜索business
+        $businesses = Business::where('name', 'like', '%' . $q . '%')->get();
+        return BusinessResource::collection($businesses);
+    }
 }

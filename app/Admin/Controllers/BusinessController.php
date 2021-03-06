@@ -34,6 +34,9 @@ class BusinessController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
         $grid->images()->image(env('APP_URL') . '/uploads', 64, 64);
+        $grid->column('province', __('Province'));
+        $grid->column('city', __('City'));
+        $grid->column('area', __('Area'));
         $grid->column('address', __('Address'));
         $grid->column('working_time_from', __('Working time from'));
         $grid->column('working_time_to', __('Working time to'));
@@ -66,6 +69,9 @@ class BusinessController extends AdminController
             return env('APP_URL') . '/uploads/' . $path;
         })->image();
 
+        $show->field('province', __('Province'));
+        $show->field('city', __('City'));
+        $show->field('area', __('Area'));
         $show->field('address', __('Address'));
         $show->field('working_time_from', __('Working time from'));
         $show->field('working_time_to', __('Working time to'));
@@ -125,6 +131,9 @@ class BusinessController extends AdminController
 
         $form->text('name', __('Name'));
         $form->multipleImage('images', __('Images'))->removable()->uniqueName();
+        $form->text('province', __('Province'));
+        $form->text('city', __('City'));
+        $form->text('area', __('Area'));
         $form->text('address', __('Address'));
         $form->text('working_time_from', __('Working time from'));
         $form->text('working_time_to', __('Working time to'));

@@ -10,9 +10,9 @@ class Business extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'images', 'address', 'working_time_from', 'working_time_to',
-        'price_title', 'price_from', 'price_to', 'price_currency', 'about',
-        'recommend'
+        'name', 'images', 'province', 'city', 'address', 'working_time_from',
+        'working_time_to', 'price_title', 'price_from', 'price_to',
+        'price_currency', 'about', 'recommend'
     ];
 
     public function setImagesAttribute($pictures)
