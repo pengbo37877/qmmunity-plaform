@@ -52,6 +52,11 @@ class Business extends Model
         return $this->morphMany(Review::class, 'reviewable');
     }
 
+    public function savedUsers()
+    {
+        return $this->belongsToMany(User::class, 'user_saved_business', 'business_id', 'user_id');
+    }
+
     public function ads()
     {
         return $this->hasMany(Ad::class);

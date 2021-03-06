@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Selectable\Users;
 use App\Models\Review;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -64,6 +65,12 @@ class ReviewController extends AdminController
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
+        $show->likedUsers('Liked users', function ($users) {
+            $users->resource('/admin/users');
+            $users->id();
+            $users->name();
+        });
+
         return $show;
     }
 
@@ -82,6 +89,8 @@ class ReviewController extends AdminController
         $form->radio('show', __('Show'))->options([1 => 'Show', 0 => 'Hide'])->default(1);
         $form->number('reviewable_id', __('Reviewable id'));
         $form->text('reviewable_type', __('Reviewable type'));
+
+        $form->belongsToMany('likedUsers', Users::class, __('Liked users'));
 
         return $form;
     }

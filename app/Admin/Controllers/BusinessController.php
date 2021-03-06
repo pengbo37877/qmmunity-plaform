@@ -7,6 +7,7 @@ use App\Models\Qkey;
 use App\Admin\Selectable\Categories;
 use App\Admin\Selectable\Qkeys;
 use App\Admin\Selectable\Rates;
+use App\Admin\Selectable\Users;
 use App\Models\Area;
 use App\Models\City;
 use App\Models\Province;
@@ -99,6 +100,12 @@ class BusinessController extends AdminController
             $qkeys->id();
             $qkeys->name();
             $qkeys->icon()->image(env('APP_URL') . '/uploads', 64, 64);
+        });
+
+        $show->savedUsers('Saved users', function ($users) {
+            $users->resource('/admin/users');
+            $users->id();
+            $users->name();
         });
 
         $show->reviews('Reviews', function ($reviews) {
@@ -213,6 +220,7 @@ class BusinessController extends AdminController
         // $form->multipleSelect('categories', 'Category')->options(Category::all()->pluck('name', 'id'));
         $form->belongsToMany('qkeys', Qkeys::class, __('Q keys'));
         // $form->multipleSelect('qkeys', 'Q keys')->options(Qkey::all()->pluck('name', 'id'));
+        $form->belongsToMany('savedUsers', Users::class, __('Saved users'));
 
         $form->morphMany('reviews', function (Form\NestedForm $form) {
             $form->text('message');
