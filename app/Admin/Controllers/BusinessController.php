@@ -173,8 +173,8 @@ class BusinessController extends AdminController
         $form->select('provinceid', __('Province'))->options($options)->load('cityid', '/api/city');
         $form->select('cityid', __('City'))->options(function ($cityid) {
             $city = City::where('cityid', $cityid)->first();
-            $cities = City::where('provinceid', $city->provinceid)->get();
             if ($city) {
+                $cities = City::where('provinceid', $city->provinceid)->get();
                 $options[$city->cityid] = $city->city;
                 foreach ($cities as $c) {
                     if ($c->id != $city->id) {
@@ -182,17 +182,21 @@ class BusinessController extends AdminController
                     }
                 }
                 return $options;
+            } else {
+                return [];
             }
         })->load('areaid', '/api/area');
         $form->select('areaid', __('Area'))->options(function ($areaid) {
             $area = Area::where('areaid', $areaid)->first();
-            $areas = Area::where('cityid', $area->cityid)->get();
             if ($area) {
+                $areas = Area::where('cityid', $area->cityid)->get();
                 $options[$area->areaid] = $area->area;
                 foreach ($areas as $a) {
                     $options[$a->areaid] = $a->area;
                 }
                 return $options;
+            } else {
+                return [];
             }
         });
         $form->text('address', __('Address'));
