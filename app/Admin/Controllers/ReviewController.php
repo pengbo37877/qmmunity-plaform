@@ -29,9 +29,10 @@ class ReviewController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('user_id', __('User Id'));
         $grid->column('message', __('Message'));
-        $grid->images()->map(function ($path) {
-            return env('APP_URL') . '/uploads/' . $path;
-        })->image();
+        // $grid->images()->map(function ($path) {
+        //     return env('APP_URL') . '/uploads/' . $path;
+        // })->image();
+        $grid->images()->image(env('APP_URL') . '/uploads', 100, 64);
         $grid->column('show', __('Show'))->bool();
         $grid->column('reviewable_id', __('Reviewable id'));
         $grid->column('reviewable_type', __('Reviewable type'));
