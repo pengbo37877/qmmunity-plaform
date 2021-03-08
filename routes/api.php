@@ -32,4 +32,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
+    Route::any('update_user_info/{id}', [UserController::class, 'updateUserInfo']);
 });
