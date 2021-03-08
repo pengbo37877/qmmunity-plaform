@@ -102,12 +102,18 @@ class UserController extends Controller
             abort(401);
         }
         $user = User::find($id);
-        $user->name = $request->name;
+        if (!$user->name) {
+            $user->name = $request->name;
+        }
+        if (!$user->profile_photo_path) {
+            $user->profile_photo_path = $user->avatar;
+        }
         $user->save();
 
         $profile = UserProfile::where('user_id', $id)->first();
         $profile->name = $request->name;
         $profile->avatar = $request->avatar;
+        $profile->gender = $request->gender;
         $profile->location = $request->location;
 
         $profile->save();
