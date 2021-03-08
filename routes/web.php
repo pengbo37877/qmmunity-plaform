@@ -36,6 +36,4 @@ Route::any('/wechat', [WeChatController::class, 'serve']); // 处理小程序客
 Route::any('/access_token', [WeChatController::class, 'accessToken']);
 
 // 更新微信数据
-Route::middleware('auth:sanctum')->get('/dashboard', function () {
-    Route::any('/update_user_info/{id}', [WeChatController::class, 'updateUserInfo']);
-});
+Route::middleware('auth:sanctum')->any('/update_user_info/{id}', [WeChatController::class, 'updateUserInfo']);

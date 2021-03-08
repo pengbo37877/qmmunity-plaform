@@ -61,34 +61,6 @@ class UserController extends Controller
     }
 
     /**
-     * Update user wx info.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updateWxInfo(Request $request, $id)
-    {
-        $authUser = $request->user();
-
-        if ($authUser->id != $id) {
-            abort(401);
-        }
-        $user = User::find($id);
-        $user->name = $request->name;
-        $user->save();
-
-        $profile = UserProfile::where('user_id', $id)->first();
-        $profile->name = $request->name;
-        $profile->avatar = $request->avatar;
-        $profile->location = $request->location;
-
-        $profile->save();
-
-        return new UserResource(User::with('profile')->find($id));
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -32,5 +32,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
-    Route::put('wx-user-info/{id}', [UserController::class, 'updateWxInfo']);
 });
