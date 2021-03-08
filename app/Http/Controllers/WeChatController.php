@@ -41,7 +41,7 @@ class WeChatController extends Controller
             // 已经存在用户
             $user = User::find($profile->user_id);
             // 删除之前的token
-            $user->tokens()->delete();
+            // $user->tokens()->delete();
             // 创建新的token
             return [
                 'token' => $user->createToken('wechat-token')->plainTextToken,
@@ -65,32 +65,6 @@ class WeChatController extends Controller
             'token' => $user->createToken('wechat-token')->plainTextToken,
             'user' => User::with('profile')->find($user->id)
         ];
-    }
-
-    /**
-     * 更新用户的微信信息
-     * 微信前端调用wx.getUserInfo后访问该接口
-     *（非加密信息）
-     */
-    public function updateUserInfo(Request $request, $id)
-    {
-        $authUser = $request->user();
-
-        if ($authUser->id != $id) {
-            abort(401);
-        }
-        $user = User::find($id);
-        $user->name = $request->name;
-        $user->save();
-
-        $profile = UserProfile::where('user_id', $id)->first();
-        $profile->name = $request->name;
-        $profile->avatar = $request->avatar;
-        $profile->location = $request->location;
-
-        $profile->save();
-
-        return User::with('profile')->find($id);
     }
 
     /**
