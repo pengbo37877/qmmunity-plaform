@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -56,6 +57,34 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        return new UserResource(User::with('profile')->find($id));
+    }
+
+    /**
+     * Update user wx info.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateWxInfo(Request $request, $id)
+    {
+        $authUser = $request->user();
+
+        if ($authUser->id != $id) {
+            abort(401);
+        }
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->save();
+
+        $profile = UserProfile::where('user_id', $id)->first();
+        $profile->name = $request->name;
+        $profile->avatar = $request->avatar;
+        $profile->location = $request->location;
+
+        $profile->save();
+
         return new UserResource(User::with('profile')->find($id));
     }
 
