@@ -12,7 +12,7 @@ class Business extends Model
     protected $fillable = [
         'name', 'images', 'provinceid', 'cityid', 'areaid', 'address',
         'working_time_from', 'working_time_to', 'price_title', 'price_from',
-        'price_to', 'price_currency', 'about', 'recommend'
+        'price_to', 'price_currency', 'about', 'recommend', 'order'
     ];
 
     public function setImagesAttribute($pictures)
@@ -30,6 +30,11 @@ class Business extends Model
     public function scopeRecommend($query)
     {
         return $query->where('recommend', 1);
+    }
+
+    public function scopeOrder($query)
+    {
+        return $query->orderBy('order');
     }
 
     public function categories()

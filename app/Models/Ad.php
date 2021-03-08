@@ -9,11 +9,16 @@ class Ad extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image', 'business_id', 'show'];
+    protected $fillable = ['image', 'business_id', 'show', 'order'];
 
     public function scopeShow($query)
     {
         return $query->where('show', true);
+    }
+
+    public function scopeOrder($query)
+    {
+        return $query->orderBy('order');
     }
 
     public function business()

@@ -85,6 +85,7 @@ class BusinessController extends AdminController
         $show->field('price_currency', __('Price currency'));
         $show->field('about', __('About'));
         $show->field('recommend', __('Recommend'));
+        $show->field('order', __('Order'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -214,7 +215,9 @@ class BusinessController extends AdminController
         $form->text('price_to', __('Price to'));
         $form->text('price_currency', __('Price currency'))->default('RMB');
         $form->textarea('about', __('About'));
-        $form->radio('recommend', __('Recommend'))->options([1 => 'Recommend', 0 => 'Standard'])->default(0);
+        $form->radio('recommend', __('Recommend'))->options([1 => 'Recommend', 0 => 'Standard'])->default(0)
+            ->help('recommend means show on home page');
+        $form->number('order', __('Order'))->help('make it more then 1, less number show first. impact on recommend businesses');
 
         $form->belongsToMany('categories', Categories::class, __('Categories'));
         // $form->multipleSelect('categories', 'Category')->options(Category::all()->pluck('name', 'id'));
@@ -225,7 +228,8 @@ class BusinessController extends AdminController
         $form->morphMany('reviews', function (Form\NestedForm $form) {
             $form->text('message');
             $form->multipleImage('images', __('Images'));
-            $form->radio('show', __('Show'))->options([1 => 'Show', 0 => 'Hide'])->default(0);
+            $form->radio('show', __('Show'))->options([1 => 'Show', 0 => 'Hide'])->default(0)
+                ->help('hide means all user can not see it');
         });
 
         $form->hasMany('ads', function (Form\NestedForm $form) {

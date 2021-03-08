@@ -31,6 +31,7 @@ class AdController extends AdminController
         $grid->column('business_id', __('Business id'));
         $grid->column('business.name', __('Business name'));
         $grid->column('show', __('Ad Show'))->bool();
+        $grid->column('order', __('Order'));
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
@@ -50,6 +51,7 @@ class AdController extends AdminController
         $show->field('id', __('Id'));
         $show->field('image', __('Image'))->image();
         $show->field('business_id', __('Business id'));
+        $show->field('order', __('Order'));
         $show->field('show', __('Show'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -86,7 +88,8 @@ class AdController extends AdminController
 
         $form->image('image', __('Image'));
         $form->text('business_id', __('Business id'));
-        $form->switch('show', __('Show'))->default(1);
+        $form->number('order', __('Order'))->help('make it more then 1, less number show first. impact on showing ads');
+        $form->switch('show', __('Show'))->default(1)->help('turn on means show on home page');
 
         return $form;
     }
