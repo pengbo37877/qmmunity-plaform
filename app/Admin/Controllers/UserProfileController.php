@@ -31,7 +31,7 @@ class UserProfileController extends AdminController
         $grid->column('open_id', __('Open id'));
         $grid->column('union_id', __('Union id'));
         $grid->column('gender', __('Gender'));
-        $grid->column('avatar', __('Avatar'));
+        $grid->column('avatar', __('Avatar'))->image(48, 48);
         $grid->column('phone', __('Phone'));
         $grid->column('name', __('Name'));
         $grid->column('location', __('Location'));

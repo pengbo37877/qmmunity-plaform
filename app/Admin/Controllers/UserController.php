@@ -35,7 +35,7 @@ class UserController extends AdminController
         $grid->column('two_factor_recovery_codes', __('Two factor recovery codes'));
         $grid->column('remember_token', __('Remember token'));
         $grid->column('current_team_id', __('Current team id'));
-        $grid->column('profile_photo_path', __('Profile photo path'));
+        $grid->column('profile_photo_path', __('Profile photo path'))->image(48, 48);
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
