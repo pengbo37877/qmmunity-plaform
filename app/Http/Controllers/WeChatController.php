@@ -60,7 +60,10 @@ class WeChatController extends Controller
 
         // 创建新的token
         $token = $user->createToken('wechat-token');
-        return $token->plainTextToken;
+        return [
+            'token' => $token->plainTextToken,
+            'user' => User::with('profile')->find($user->id)
+        ];
     }
 
     /**
