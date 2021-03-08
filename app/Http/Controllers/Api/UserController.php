@@ -106,7 +106,7 @@ class UserController extends Controller
             $user->name = $request->name;
         }
         if (!$user->profile_photo_path) {
-            $user->profile_photo_path = $user->avatar;
+            $user->profile_photo_path = $request->avatar;
         }
         $user->save();
 
