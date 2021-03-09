@@ -26,7 +26,9 @@ class QConfigController extends AdminController
     {
         $grid = new Grid(new QConfig());
 
-
+        $grid->column('id', __('Id'));
+        $grid->column('key', __('Key'));
+        $grid->column('value', __('Value'));
 
         return $grid;
     }
@@ -40,7 +42,9 @@ class QConfigController extends AdminController
     protected function detail($id)
     {
         $show = new Show(QConfig::findOrFail($id));
-
+        $show->field('id', __('Id'));
+        $show->field('key', __('Key'));
+        $show->field('value', __('Value'));
 
 
         return $show;
@@ -54,7 +58,8 @@ class QConfigController extends AdminController
     protected function form()
     {
         $form = new Form(new QConfig());
-
+        $form->text('key', __('Key'));
+        $form->text('value', __('Value'));
 
 
         return $form;

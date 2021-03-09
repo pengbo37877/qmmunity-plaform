@@ -11,6 +11,7 @@ use App\Models\Ad;
 use App\Models\Business;
 use App\Models\Category;
 use App\Models\Notice;
+use App\Models\QConfig;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -38,6 +39,15 @@ class HomeController extends Controller
     {
         $notice = Notice::show()->first();
         return new NoticeResource($notice);
+    }
+
+    public function config()
+    {
+        $config = QConfig::where('key', request('key'))->first();
+        if ($config) {
+            return $config->value;
+        }
+        return "";
     }
 
     public function search()

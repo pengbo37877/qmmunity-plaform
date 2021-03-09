@@ -25,6 +25,7 @@ Route::get('/home_notice', [HomeController::class, 'notice']);
 Route::get('/home_search', [HomeController::class, 'search']);
 Route::get('/city', [AddressController::class, 'city']);
 Route::get('/area', [AddressController::class, 'area']);
+Route::get('/config', [AddressController::class, 'key']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
