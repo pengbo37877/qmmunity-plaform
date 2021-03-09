@@ -23,7 +23,8 @@ class HomeController extends Controller
 
     public function businesses()
     {
-        $businesses = Business::recommend()->order()->get();
+        $businesses = Business::with('categories', 'province', 'city', 'area', 'qkeys')
+            ->recommend()->order()->get();
         return BusinessResource::collection($businesses);
     }
 
