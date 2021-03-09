@@ -11,6 +11,6 @@ class AdController extends Controller
 {
     public function home()
     {
-        return AdResource::collection(Ad::show()->get());
+        return AdResource::collection(Ad::show()->order()->get());
     }
 }

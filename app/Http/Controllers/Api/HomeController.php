@@ -23,19 +23,19 @@ class HomeController extends Controller
 
     public function businesses()
     {
-        $businesses = Business::recommend()->get();
+        $businesses = Business::recommend()->order()->get();
         return BusinessResource::collection($businesses);
     }
 
     public function ads()
     {
-        $ads = Ad::show()->get();
+        $ads = Ad::show()->order()->get();
         return AdResource::collection($ads);
     }
 
     public function notice()
     {
-        $notice = Notice::show()->take(1)->first();
+        $notice = Notice::show()->first();
         return new NoticeResource($notice);
     }
 
