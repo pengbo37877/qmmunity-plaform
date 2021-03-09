@@ -21,4 +21,5 @@ Route::group([
     $router->resource('reviews', ReviewController::class);
     $router->resource('user-profiles', UserProfileController::class);
     $router->resource('ads', AdController::class);
+    $router->resource('notices', NoticeController::class);
 });
